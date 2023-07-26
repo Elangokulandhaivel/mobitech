@@ -18,11 +18,14 @@ class Datafetch {
       if (data.statusCode != 200) {
         return "not fetched";
       }
-      print(jsonDecode(data.body));
-      if (data == null) {
+      //print(jsonDecode(data.body)[0]);
+      if (data.body.isEmpty) {
         return "nothing";
       }
-      return Products().tojson(jsonDecode(data.body));
+      //String pro = jsonDecode(data.body)[0].toString();
+      List<Map<String, dynamic>> pro = Products().tojson(jsonDecode(data.body));
+      //print(pro[0]);
+      return pro;
     } catch (e) {
       print(e.toString());
     }
